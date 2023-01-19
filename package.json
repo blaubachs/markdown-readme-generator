@@ -1,14 +1,22 @@
 {
-  "name": "static-site",
+  "name": "markdown-readme-generator",
   "version": "1.0.0",
-  "description": "",
+  "description": "An application to create markdown for a readme.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "Ben Laubach",
   "license": "ISC",
   "dependencies": {
-    "inquirer": "8.2.4"
-  }
+    "inquirer": "^8.2.4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/blaubachs/markdown-readme-generator.git"
+  },
+  "bugs": {
+    "url": "https://github.com/blaubachs/markdown-readme-generator/issues"
+  },
+  "homepage": "https://github.com/blaubachs/markdown-readme-generator#readme"
 }
