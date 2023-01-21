@@ -104,6 +104,21 @@ function extraFeatures() {
     );
 }
 
+function createList(num) {
+  let tempArr = [];
+  num = parseInt(num);
+  if (num != 0) {
+    for (i = 0; i < num; i++) {
+      tempArr.push(`- \n`);
+      console.log(tempArr);
+    }
+  } else {
+    return ``;
+  }
+  console.log(tempArr.join(""));
+  return tempArr.join("");
+}
+
 function appendExtraFeatures(data) {
   return `## Features
 
@@ -116,4 +131,5 @@ module.exports = {
   generateMarkdown,
   extraFeatures,
   appendExtraFeatures,
+  createList,
 };
