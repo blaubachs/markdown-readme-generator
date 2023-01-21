@@ -113,7 +113,11 @@ function extraFeatures() {
           ])
           .then((inputtedFeatures) => createList(inputtedFeatures))
           .then((data) => appendExtraFeatures(data))
-          .then((thing) => console.log(thing));
+          .then((results) =>
+            fs.appendFile("./generated-readme/README.md", results, (err) =>
+              console.log(err)
+            )
+          );
       } else {
         inquirer
           .prompt([
@@ -124,15 +128,18 @@ function extraFeatures() {
               name: "onlySentence",
             },
           ])
-          .then((onlySentence) => appendExtraFeatures(onlySentence));
+          .then((onlySentence) => appendExtraFeatures(onlySentence))
+          .then((results) =>
+            fs.appendFile("./generated-readme/README.md", results, (err) =>
+              console.log(err)
+            )
+          );
       }
     });
 }
 
 function createList(featureList) {
-  console.log(featureList);
   let listArr = featureList.listItems.split("-");
-  console.log(listArr);
   if (listArr.length != 0) {
     for (i = 0; i < listArr.length; i++) {
       tempArr.push(`- ${listArr[i]}\n`);
@@ -144,11 +151,19 @@ function createList(featureList) {
 }
 
 function appendExtraFeatures(data) {
-  return `## Features
-
+  if (data == "") {
+    return `## Features
+  
 ${data}
 
   `;
+  } else {
+    return `## Features
+  
+${data.onlySentence}
+    
+`;
+  }
 }
 
 module.exports = {

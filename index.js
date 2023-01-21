@@ -63,18 +63,18 @@ inquirer
   ])
   .then((userInput) => {
     console.log(userInput);
-    console.log(generateMarkdown.generateMarkdown(userInput));
+    // console.log(generateMarkdown.generateMarkdown(userInput));
 
-    // fs.writeFile(
-    //   "./generated-readme/README.md",
-    //   generateMarkdown(userInput),
-    //   (err) =>
-    //     err
-    //       ? console.log("An error occured")
-    //       : console.log(
-    //           "Your README is generated! Please check the directory '/generated-readme' to view."
-    //         )
-    // );
+    fs.writeFile(
+      "./generated-readme/README.md",
+      generateMarkdown.generateMarkdown(userInput),
+      (err) =>
+        err
+          ? console.log("An error occured")
+          : console.log(
+              "Your README is generated! Please check the directory '/generated-readme' to view."
+            )
+    );
     return (minimumCompletedFlag = true);
   })
   .then((flag) =>
