@@ -1,3 +1,5 @@
+const inquirer = require("inquirer");
+const fs = require("fs");
 let licenseResult = ``;
 
 function licenses(chosenLicense) {
@@ -82,14 +84,18 @@ ${data.testInstructions}
 }
 
 function extraFeatures() {
-  inquirer.prompt([
-    {
-      type: "confirm",
-      message:
-        "Would you like to create features in a list? If not, the next prompt will only have you enter in a sentence with no additional formatting.",
-      name: "createListBoolean",
-    },
-  ]);
+  inquirer
+    .prompt([
+      {
+        type: "confirm",
+        message:
+          "Would you like to create features in a list? If not, the next prompt will only have you enter in a sentence with no additional formatting.",
+        name: "createListBoolean",
+      },
+    ])
+    .then(({ createListBoolean }) =>
+      createListBoolean ? console.log("trube") : console.log("not troob")
+    );
 }
 
 function appendExtraFeatures(data) {
@@ -100,4 +106,8 @@ function appendExtraFeatures(data) {
   `;
 }
 
-module.exports = generateMarkdown;
+module.exports = {
+  generateMarkdown,
+  extraFeatures,
+  appendExtraFeatures,
+};

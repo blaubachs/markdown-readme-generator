@@ -3,6 +3,8 @@ const fs = require("fs");
 const generateMarkdown = require("./utils/generateMarkdown.js");
 let minimumCompletedFlag = false;
 
+console.log(generateMarkdown);
+
 inquirer
   .prompt([
     {
@@ -50,7 +52,6 @@ inquirer
   ])
   .then((userInput) => {
     console.log(userInput);
-    console.log(generateMarkdown(userInput));
 
     // fs.writeFile(
     //   "./generated-readme/README.md",
@@ -78,7 +79,7 @@ inquirer
   )
   .then((confirm) =>
     confirm.featureBoolean
-      ? extraFeatures()
+      ? generateMarkdown.extraFeatures()
       : console.log(
           "You have completed the minimum steps required for your professional README. Remember to check the directory, '/generated-readme' to view."
         )
