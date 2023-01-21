@@ -1,6 +1,7 @@
 const inquirer = require("inquirer");
 const fs = require("fs");
 let licenseResult = ``;
+let tempArr = [];
 
 function licenses(chosenLicense) {
   switch (chosenLicense) {
@@ -99,30 +100,53 @@ function extraFeatures() {
         name: "createListBoolean",
       },
     ])
-    .then(({ createListBoolean }) =>
-      createListBoolean ? console.log("trube") : console.log("not troob")
-    );
+    .then(({ createListBoolean }) => {
+      if (createListBoolean) {
+        inquirer
+          .prompt([
+            {
+              type: "input",
+              message:
+                "Please enter the extra features you would like to add to your README, separated by dashes, for example, 'one- two- three', the final item should not have a dash.",
+              name: "listItems",
+            },
+          ])
+          .then((inputtedFeatures) => createList(inputtedFeatures))
+          .then((data) => appendExtraFeatures(data))
+          .then((thing) => console.log(thing));
+      } else {
+        inquirer
+          .prompt([
+            {
+              type: "input",
+              message:
+                "Please enter the extra feature you would like to add to the features section.",
+              name: "onlySentence",
+            },
+          ])
+          .then((onlySentence) => appendExtraFeatures(onlySentence));
+      }
+    });
 }
 
-function createList(num) {
-  let tempArr = [];
-  num = parseInt(num);
-  if (num != 0) {
-    for (i = 0; i < num; i++) {
-      tempArr.push(`- \n`);
-      console.log(tempArr);
+function createList(featureList) {
+  console.log(featureList);
+  let listArr = featureList.listItems.split("-");
+  console.log(listArr);
+  if (listArr.length != 0) {
+    for (i = 0; i < listArr.length; i++) {
+      tempArr.push(`- ${listArr[i]}\n`);
     }
   } else {
-    return ``;
+    return;
   }
-  console.log(tempArr.join(""));
   return tempArr.join("");
 }
 
 function appendExtraFeatures(data) {
   return `## Features
 
-
+${data}
 
   `;
 }
@@ -131,5 +155,4 @@ module.exports = {
   generateMarkdown,
   extraFeatures,
   appendExtraFeatures,
-  createList,
 };
