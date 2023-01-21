@@ -49,9 +49,21 @@ inquirer
       message: "Enter any tests for your application.",
       name: "testInstructions",
     },
+    {
+      type: "input",
+      message: "What is your github profile username?",
+      name: "githubProfile",
+    },
+    {
+      type: "input",
+      message:
+        "Please enter information on how to contact you with questions. Email, phone, slack are all okay.",
+      name: "userContact",
+    },
   ])
   .then((userInput) => {
     console.log(userInput);
+    console.log(generateMarkdown.generateMarkdown(userInput));
 
     // fs.writeFile(
     //   "./generated-readme/README.md",

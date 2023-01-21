@@ -37,6 +37,9 @@ Please refer to the ${chosenLicense} for licensing information.`;
 
 // TODO: Create a function to generate markdown for README
 function generateMarkdown(data) {
+  if (data.userContact == "") {
+    data.userContact = "No contact information provided.";
+  }
   return `# ${data.titleOfProject}
 
 ## Description
@@ -50,9 +53,10 @@ If your README is long, add a table of contents to make it easy for users to fin
 - [Installation](#installation)
 - [Usage](#usage)
 - [License](#license)
-- [Contribute](#Contribute)
+- [Contribute](#contribute)
 - [Tests](#tests)
 - [Questions](#questions)
+- [Features](#features)
 
 ## Installation
 
@@ -76,7 +80,9 @@ ${data.testInstructions}
 
 ## Questions
 
+Github: [${data.githubProfile}](https://github.com/${data.githubProfile})
 
+Contact: ${data.userContact}
 
 ---
 
