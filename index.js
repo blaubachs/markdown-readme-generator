@@ -1,6 +1,7 @@
 const inquirer = require("inquirer");
 const fs = require("fs");
 const generateMarkdown = require("./utils/generateMarkdown.js");
+let minimumCompletedFlag = false;
 
 inquirer
   .prompt([
@@ -49,14 +50,36 @@ inquirer
   ])
   .then((userInput) => {
     console.log(userInput);
-    fs.writeFile(
-      "./generated-readme/README.md",
-      generateMarkdown(userInput),
-      (err) =>
-        err
-          ? console.log("An error occured")
-          : console.log(
-              "Your README is generated! Please check the directory '/generated-readme' to view."
-            )
-    );
-  });
+    console.log(generateMarkdown(userInput));
+
+    // fs.writeFile(
+    //   "./generated-readme/README.md",
+    //   generateMarkdown(userInput),
+    //   (err) =>
+    //     err
+    //       ? console.log("An error occured")
+    //       : console.log(
+    //           "Your README is generated! Please check the directory '/generated-readme' to view."
+    //         )
+    // );
+    return (minimumCompletedFlag = true);
+  })
+  .then((flag) =>
+    flag
+      ? inquirer.prompt([
+          {
+            type: "confirm",
+            message:
+              "Would you like to list any extra features for your application?",
+            name: "featureBoolean",
+          },
+        ])
+      : console.log("An error occured.")
+  )
+  .then((confirm) =>
+    confirm.featureBoolean
+      ? extraFeatures()
+      : console.log(
+          "You have completed the minimum steps required for your professional README. Remember to check the directory, '/generated-readme' to view."
+        )
+  );

@@ -1,26 +1,36 @@
+let licenseResult = ``;
+
 function licenses(chosenLicense) {
   switch (chosenLicense) {
     case "Apache 2.0":
-      console.log("apache");
+      licenseResult = `[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+
+Please refer to the ${chosenLicense} for licensing information.`;
       break;
     case "MIT License":
-      console.log("mit");
+      licenseResult = `[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+Please refer to the ${chosenLicense} for licensing information.`;
       break;
     case "BSD 2Clause 'Simplified' License":
-      console.log("bsd");
+      licenseResult = `[![License](https://img.shields.io/badge/License-BSD_2--Clause-orange.svg)](https://opensource.org/licenses/BSD-2-Clause)
+
+Please refer to the ${chosenLicense} for licensing information.`;
       break;
     case "Mozilla Public License":
-      console.log("mozilla");
+      licenseResult = `[![License: MPL 2.0](https://img.shields.io/badge/License-MPL_2.0-brightgreen.svg)](https://opensource.org/licenses/MPL-2.0)
+
+Please refer to the ${chosenLicense} for licensing information.`;
       break;
     case "No License":
-      console.log("non");
+      licenseResult = `Not licensed.`;
       break;
     default:
       console.log("something weird happened");
       break;
   }
 
-  return chosenLicense;
+  return licenseResult;
 }
 
 // TODO: Create a function to generate markdown for README
@@ -68,17 +78,26 @@ ${data.testInstructions}
 
 ---
 
-🏆 The previous sections are the bare minimum, and your project will ultimately determine the content of this document. You might also want to consider adding the following sections.
-
-## Badges
-
-Badges aren't necessary, per se, but they demonstrate street cred. Badges let other developers know that you know what you're doing. Check out the badges hosted by [shields.io](https://shields.io/). You may not understand what they all represent now, but you will in time.
-
-## Features
-
-If your project has a lot of features, list them here.
-
 `;
+}
+
+function extraFeatures() {
+  inquirer.prompt([
+    {
+      type: "confirm",
+      message:
+        "Would you like to create features in a list? If not, the next prompt will only have you enter in a sentence with no additional formatting.",
+      name: "createListBoolean",
+    },
+  ]);
+}
+
+function appendExtraFeatures(data) {
+  return `## Features
+
+
+
+  `;
 }
 
 module.exports = generateMarkdown;
