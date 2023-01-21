@@ -1,6 +1,41 @@
 const inquirer = require("inquirer");
 const fs = require("fs");
 
+inquirer
+  .prompt([
+    {
+      type: "input",
+      message: "What is the title of your project?",
+      name: "titleOfProject",
+    },
+    {
+      type: "input",
+      message: "Enter a short description of your project.",
+      name: "description",
+    },
+    {
+      type: "input",
+      message: "Enter required installation instructions for your application.",
+      name: "installationInstructions",
+    },
+    {
+      type: "input",
+      message: "Enter usage instructions for your application.",
+      name: "usageInstructions",
+    },
+    {
+      type: "input",
+      message: "Enter contribution guidelines for your application.",
+      name: "contributionInstructions",
+    },
+    {
+      type: "input",
+      message: "Enter any tests for your application.",
+      name: "testInstructions",
+    },
+  ])
+  .then((userInput) => console.log(userInput));
+
 // TODO: Create an array of questions for user input
 const questions = [];
 
