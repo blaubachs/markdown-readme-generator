@@ -1,6 +1,13 @@
 const inquirer = require("inquirer");
 const fs = require("fs");
 
+// we need to also use list for a license section, and probably break apart the object of this to assign a variable for the badges.
+// we need to create a table of contents
+//  this needs to link to each section respectively.
+// we need to create a questions section
+//  questions section should link to github profile entered
+//  email address should go into the sections area as well with instructions on how to reach with additional questions.
+
 inquirer
   .prompt([
     {
