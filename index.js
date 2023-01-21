@@ -59,8 +59,7 @@ inquirer
   ])
   .then((userInput) => {
     console.log(userInput);
-    userArr = { ...userInput };
-    console.log(userArr);
+    console.log(generateMarkdown(userInput));
   });
 
 // TODO: Create a function to initialize app
