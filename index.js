@@ -1,6 +1,9 @@
 const inquirer = require("inquirer");
 const fs = require("fs");
+const generateMarkdown = require("./utils/generateMarkdown");
 let userArr;
+
+console.log(generateMarkdown);
 
 // we need to also use list for a license section, and probably break apart the object of this to assign a variable for the badges.
 // we need to create a table of contents
@@ -59,12 +62,6 @@ inquirer
     userArr = { ...userInput };
     console.log(userArr);
   });
-
-// TODO: Create an array of questions for user input
-const questions = [];
-
-// TODO: Create a function to write README file
-function writeToFile(fileName, data) {}
 
 // TODO: Create a function to initialize app
 function init() {}
