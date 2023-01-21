@@ -69,30 +69,27 @@ inquirer
       "./generated-readme/README.md",
       generateMarkdown.generateMarkdown(userInput),
       (err) =>
-        err
-          ? console.log("An error occured")
-          : console.log(
-              "Your README is generated! Please check the directory '/generated-readme' to view."
-            )
+        err ? console.log("An error occured") : (minimumCompletedFlag = true)
     );
     return (minimumCompletedFlag = true);
   })
-  .then((flag) =>
+  .then((flag) => {
     flag
-      ? inquirer.prompt([
-          {
-            type: "confirm",
-            message:
-              "Would you like to list any extra features for your application?",
-            name: "featureBoolean",
-          },
-        ])
-      : console.log("An error occured.")
-  )
-  .then((confirm) =>
-    confirm.featureBoolean
-      ? generateMarkdown.extraFeatures()
-      : console.log(
-          "You have completed the minimum steps required for your professional README. Remember to check the directory, '/generated-readme' to view."
-        )
-  );
+      ? inquirer
+          .prompt([
+            {
+              type: "confirm",
+              message:
+                "Would you like to list any extra features for your application?",
+              name: "featureBoolean",
+            },
+          ])
+          .then((confirm) =>
+            confirm.featureBoolean
+              ? generateMarkdown.extraFeatures()
+              : console.log(
+                  "You have completed the minimum steps required for your professional README. Remember to check the directory, '/generated-readme' to view."
+                )
+          )
+      : console.log("An error occured.");
+  });

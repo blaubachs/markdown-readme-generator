@@ -112,10 +112,14 @@ function extraFeatures() {
             },
           ])
           .then((inputtedFeatures) => createList(inputtedFeatures))
-          .then((data) => appendExtraFeatures(data))
+          .then((data) => appendExtraFeaturesList(data))
           .then((results) =>
             fs.appendFile("./generated-readme/README.md", results, (err) =>
-              console.log(err)
+              err
+                ? console.log(err)
+                : console.log(
+                    "You have completed the steps for your README file. Check the directory '/generated-readme' to see."
+                  )
             )
           );
       } else {
@@ -131,7 +135,11 @@ function extraFeatures() {
           .then((onlySentence) => appendExtraFeatures(onlySentence))
           .then((results) =>
             fs.appendFile("./generated-readme/README.md", results, (err) =>
-              console.log(err)
+              err
+                ? console.log(err)
+                : console.log(
+                    "You have completed the steps for your README file. Check the directory '/generated-readme' to see."
+                  )
             )
           );
       }
@@ -150,20 +158,15 @@ function createList(featureList) {
   return tempArr.join("");
 }
 
+function appendExtraFeaturesList(data) {
+  return `## Features
+  
+${data}`;
+}
 function appendExtraFeatures(data) {
-  if (data == "") {
-    return `## Features
+  return `## Features
   
-${data}
-
-  `;
-  } else {
-    return `## Features
-  
-${data.onlySentence}
-    
-`;
-  }
+${data.onlySentence}`;
 }
 
 module.exports = {
