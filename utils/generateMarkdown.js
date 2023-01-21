@@ -1,5 +1,26 @@
-function licenses(chosenLicenese) {
-  console.log("ye");
+function licenses(chosenLicense) {
+  switch (chosenLicense) {
+    case "Apache 2.0":
+      console.log("apache");
+      break;
+    case "MIT License":
+      console.log("mit");
+      break;
+    case "BSD 2Clause 'Simplified' License":
+      console.log("bsd");
+      break;
+    case "Mozilla Public License":
+      console.log("mozilla");
+      break;
+    case "No License":
+      console.log("non");
+      break;
+    default:
+      console.log("something weird happened");
+      break;
+  }
+
+  return chosenLicense;
 }
 
 // TODO: Create a function to generate markdown for README
@@ -17,7 +38,7 @@ If your README is long, add a table of contents to make it easy for users to fin
 - [Installation](#installation)
 - [Usage](#usage)
 - [License](#license)
-- [How to Contribute](#How to Contribute)
+- [Contribute](#Contribute)
 - [Tests](#tests)
 - [Questions](#questions)
 
@@ -33,9 +54,9 @@ ${data.usageInstructions}
 
 ${licenses(data.licenseChosen)}
 
-## How to Contribute
+## Contribute
 
-${data.contributionsInstructions}
+${data.contributionInstructions}
 
 ## Tests
 

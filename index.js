@@ -1,16 +1,6 @@
 const inquirer = require("inquirer");
 const fs = require("fs");
-const generateMarkdown = require("./utils/generateMarkdown");
-let userArr;
-
-console.log(generateMarkdown);
-
-// we need to also use list for a license section, and probably break apart the object of this to assign a variable for the badges.
-// we need to create a table of contents
-//  this needs to link to each section respectively.
-// we need to create a questions section
-//  questions section should link to github profile entered
-//  email address should go into the sections area as well with instructions on how to reach with additional questions.
+const generateMarkdown = require("./utils/generateMarkdown.js");
 
 inquirer
   .prompt([
@@ -59,11 +49,14 @@ inquirer
   ])
   .then((userInput) => {
     console.log(userInput);
-    console.log(generateMarkdown(userInput));
+    fs.writeFile(
+      "./generated-readme/README.md",
+      generateMarkdown(userInput),
+      (err) =>
+        err
+          ? console.log("An error occured")
+          : console.log(
+              "Your README is generated! Please check the directory '/generated-readme' to view."
+            )
+    );
   });
-
-// TODO: Create a function to initialize app
-function init() {}
-
-// Function call to initialize app
-init();
