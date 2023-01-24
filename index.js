@@ -3,8 +3,6 @@ const fs = require("fs");
 const generateMarkdown = require("./utils/generateMarkdown.js");
 let minimumCompletedFlag = false;
 
-console.log(generateMarkdown);
-
 inquirer
   .prompt([
     {
@@ -62,7 +60,7 @@ inquirer
     },
   ])
   .then((userInput) => {
-    console.log(userInput);
+    // console.log(userInput);
     // console.log(generateMarkdown.generateMarkdown(userInput));
 
     fs.writeFile(

@@ -36,7 +36,6 @@ Please refer to the ${chosenLicense} for licensing information.`;
   return licenseResult;
 }
 
-// TODO: Create a function to generate markdown for README
 function generateMarkdown(data) {
   if (data.userContact == "") {
     data.userContact = "No contact information provided.";
